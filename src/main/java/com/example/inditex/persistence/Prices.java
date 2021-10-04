@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "PRICES")
 @Data
@@ -31,10 +33,10 @@ public class Prices {
 	private Brand brand;
 
 	@Column(name = "START_DATE")
-	private String startDate;
+	private LocalDateTime startDate;
 
 	@Column(name = "END_DATE")
-	private String endDate;
+	private LocalDateTime endDate;
 
 	@Column(name = "PRICE_LIST")
 	private String priceList;

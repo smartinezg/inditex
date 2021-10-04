@@ -2,6 +2,7 @@ package com.example.inditex.services;
 
 import com.example.inditex.persistence.Brand;
 import com.example.inditex.persistence.Prices;
+import com.example.inditex.repository.BrandRepository;
 import com.example.inditex.repository.PricesRepository;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +18,9 @@ public class PricesServices {
   @Autowired
   private PricesRepository pricesRepository;
 
+  @Autowired
+  private BrandRepository brandRepository;
+
   public ResponseEntity<List<Prices>> getAllPrices() {
     List<Prices> prices = (List<Prices>) pricesRepository.findAll();
     return new ResponseEntity<>(prices, HttpStatus.OK);
@@ -25,8 +29,9 @@ public class PricesServices {
   public ResponseEntity<List<Prices>> findProduct(String date, String product, String brandName) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-    Brand brand = new Brand();
-    brand.setBrandName(brandName);
+
+    Brand brand = brandRepository.findByBrandName(brandName);
+
     List<Prices> prices = (List<Prices>) pricesRepository
         .findByEndDateLessThanEqualAndStartDateGreaterThanEqualAndProductIdAndBrand(dateTime,
             dateTime,

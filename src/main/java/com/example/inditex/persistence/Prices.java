@@ -26,9 +26,8 @@ public class Prices {
 	private Integer pricesId;
 
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "brand_id", nullable = false)
-	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "brand_id")
 	private Brand brand;
 
 	@Column(name = "START_DATE")

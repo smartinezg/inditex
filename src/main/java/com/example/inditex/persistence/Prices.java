@@ -25,7 +25,6 @@ public class Prices {
 	@Column(name = "PRICES_ID")
 	private Integer pricesId;
 
-	//@ManyToOne
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "brand_id", nullable = false)

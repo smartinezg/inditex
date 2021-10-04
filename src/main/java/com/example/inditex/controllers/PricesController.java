@@ -30,7 +30,7 @@ public class PricesController {
 
     @GetMapping(path = "/{date}/{product}/{brand}")
     public @ResponseBody
-    ResponseEntity<List<Prices>> findProduct(@PathVariable String date, @PathVariable Integer product, @PathVariable String brand) {
+    ResponseEntity<List<Prices>> findProduct(@PathVariable String date, @PathVariable String product, @PathVariable String brand) {
         return pricesServices.findProduct(date, product, brand);
     }
 

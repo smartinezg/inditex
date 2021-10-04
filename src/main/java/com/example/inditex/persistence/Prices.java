@@ -1,6 +1,7 @@
 package com.example.inditex.persistence;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -25,7 +27,6 @@ public class Prices {
 	@Column(name = "PRICES_ID")
 	private Integer pricesId;
 
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "brand_id")
 	private Brand brand;
@@ -37,16 +38,16 @@ public class Prices {
 	private LocalDateTime endDate;
 
 	@Column(name = "PRICE_LIST")
-	private String priceList;
+	private Integer priceList;
 
 	@Column(name = "PRODUCT_ID")
-	private String productId;
+	private Integer productId;
 	
 	@Column(name = "PRIORITY")
-	private String priority;
+	private Integer priority;
 
 	@Column(name = "PRICE")
-	private String price;
+	private BigDecimal price;
 
 	@Column(name = "CURR")
 	private String curr;

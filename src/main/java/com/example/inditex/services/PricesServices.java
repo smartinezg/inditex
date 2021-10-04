@@ -26,16 +26,14 @@ public class PricesServices {
     return new ResponseEntity<>(prices, HttpStatus.OK);
   }
 
-  public ResponseEntity<List<Prices>> findProduct(String date, String product, String brandName) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+  public ResponseEntity<List<Prices>> findProduct(String date, Integer product, String brandName) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
     LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
 
     Brand brand = brandRepository.findByBrandName(brandName);
 
     List<Prices> prices = (List<Prices>) pricesRepository
-        .findByEndDateLessThanEqualAndStartDateGreaterThanEqualAndProductIdAndBrand(dateTime,
-            dateTime,
-            product, brand);
+        .findByDate(dateTime, brand, product);
     return new ResponseEntity<>(prices, HttpStatus.OK);
   }
 }
